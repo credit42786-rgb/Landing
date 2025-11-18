@@ -3,150 +3,443 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Request Short-Term Cash Assistance</title>
+  <title>Request Short-Term Cash Assistance | CustomerFinanceHelp</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
     }
-    .container {
+
+    body {
+      background: linear-gradient(135deg, #f3f5fb, #e4ebf7);
+      color: #1a1f36;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .page {
       width: 100%;
-      max-width: 550px;
-      margin: 40px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 1100px;
     }
-    h1 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
     }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 15px;
+
+    .card-left,
+    .card-right {
+      padding: 32px;
     }
-    input, select {
+
+    .card-left {
+      flex: 1 1 45%;
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      color: #f9fafb;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: #cbd5f5;
+      margin-bottom: 18px;
+    }
+
+    .hero-image {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .benefits-list {
+      list-style: none;
       font-size: 14px;
     }
-    .btn {
-      margin-top: 25px;
-      width: 100%;
-      padding: 12px;
-      background-color: #1e90ff;
-      color: white;
+
+    .benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .benefits-list span.icon {
+      color: #4ade80;
       font-size: 16px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
+      margin-top: 1px;
     }
-    .btn:hover {
-      background-color: #1874d1;
-    }
-    .footer {
-      margin-top: 25px;
+
+    .trust-strip {
+      margin-top: 24px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.8);
       font-size: 12px;
-      color: #777;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .trust-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .card-left-footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .card-right {
+      flex: 1 1 55%;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-header {
+      margin-bottom: 16px;
+    }
+
+    .form-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .form-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 10px 11px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+      background: #ffffff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background-color 0.15s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+      background: #ffffff;
+    }
+
+    input::placeholder {
+      color: #9ca3af;
+    }
+
+    .inline-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: #4b5563;
+      margin-top: 4px;
+    }
+
+    .consent-row input[type="checkbox"] {
+      margin-top: 2px;
+      width: 16px;
+      height: 16px;
+    }
+
+    .submit-btn {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 30px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8, #1d4ed8);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 18px rgba(37, 99, 235, 0.35);
+    }
+
+    .fine-print {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #9ca3af;
       text-align: center;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 880px) {
+      .card {
+        flex-direction: column;
+      }
+      .card-left,
+      .card-right {
+        flex: 1 1 100%;
+        padding: 24px 20px;
+      }
+      .card-left {
+        border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+      }
+      body {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 22px;
+      }
+      .inline-two {
+        grid-template-columns: 1fr;
+      }
+      .card-left,
+      .card-right {
+        padding: 20px 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Request Short-Term Cash Assistance</h1>
+  <div class="page">
+    <div class="card">
+      
+      <!-- LEFT SIDE -->
+      <div class="card-left">
+        <div>
+          <div class="logo">CUSTOMERFINANCEHELP.COM</div>
 
-    <form action="https://script.google.com/macros/s/AKfycbwoUWOSHP4clgHHGkiBgXhiiTJlC2C1xEGp-TtlJ-8lXXzZlDLOk-NODS4EdpmThM0S/exec" method="POST">
+          <h1 class="hero-title">Short-Term Cash Assistance, Without the Noise</h1>
+          <p class="hero-subtitle">
+            See what short-term cash options may be available based on your
+            state, income schedule, and bank account status.
+          </p>
 
-      <label>Full Name</label>
-      <input type="text" name="fullName" placeholder="John Doe" required />
+          <img
+            class="hero-image"
+            src="https://images.pexels.com/photos/4386369/pexels-photo-4386369.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Financial assistance"
+          />
 
-      <label>Email</label>
-      <input type="email" name="email" placeholder="you@example.com" required />
+          <ul class="benefits-list">
+            <li>
+              <span class="icon">✓</span>
+              1–3 minute request form — fast & secure.
+            </li>
+            <li>
+              <span class="icon">✓</span>
+              No upfront fees. No obligation.
+            </li>
+            <li>
+              <span class="icon">✓</span>
+              State-aware options only.
+            </li>
+          </ul>
 
-      <label>Phone Number</label>
-      <input type="tel" name="phone" placeholder="555-555-5555" required />
+          <div class="trust-strip">
+            <div class="trust-pill">
+              <span class="trust-dot"></span>Secure form
+            </div>
+            <div class="trust-pill">
+              <span class="trust-dot"></span>No fees to submit
+            </div>
+            <div class="trust-pill">
+              <span class="trust-dot"></span>Private & confidential
+            </div>
+          </div>
+        </div>
 
-      <label>State</label>
-      <select name="state" required>
-        <option value="">Select your state</option>
-        <option>Alabama</option>
-        <option>Alaska</option>
-        <option>California</option>
-        <option>Delaware</option>
-        <option>Florida</option>
-        <option>Hawaii</option>
-        <option>Idaho</option>
-        <option>Illinois</option>
-        <option>Iowa</option>
-        <option>Kansas</option>
-        <option>Louisiana</option>
-        <option>Minnesota</option>
-        <option>Mississippi</option>
-        <option>Missouri</option>
-        <option>Nevada</option>
-        <option>New Mexico</option>
-        <option>North Dakota</option>
-        <option>Ohio</option>
-        <option>Oklahoma</option>
-        <option>South Carolina</option>
-        <option>Tennessee</option>
-        <option>Texas</option>
-        <option>Utah</option>
-        <option>Washington</option>
-        <option>Wisconsin</option>
-        <option>Wyoming</option>
-      </select>
+        <div class="card-left-footer">
+          CustomerFinanceHelp is an information and referral service. We are not a lender. Submitting a request will not impact your credit.
+        </div>
+      </div>
 
-      <label>Requested Amount</label>
-      <select name="amount" required>
-        <option value="">Choose amount</option>
-        <option>$100</option>
-        <option>$200</option>
-        <option>$300</option>
-        <option>$400</option>
-        <option>$500</option>
-        <option>$600</option>
-        <option>$700</option>
-        <option>$800</option>
-        <option>$900</option>
-        <option>$1,000</option>
-      </select>
+      <!-- RIGHT SIDE -->
+      <div class="card-right">
 
-      <label>Income Frequency</label>
-      <select name="incomeFrequency" required>
-        <option value="">Select one</option>
-        <option>Weekly</option>
-        <option>Bi-Weekly</option>
-        <option>Monthly</option>
-      </select>
+        <div class="form-header">
+          <h2 class="form-title">Request Short-Term Cash Assistance</h2>
+          <p class="form-subtitle">
+            Complete the form below to see what options may be available.
+          </p>
+        </div>
 
-      <label>Do you have an active bank account?</label>
-      <select name="bankAccount" required>
-        <option value="">Select</option>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
+        <form action="https://script.google.com/macros/s/AKfycbwoUWOSHP4clgHHGkiBgXhiiTJlC2C1xEGp-TtlJ-8lXXzZlDLOk-NODS4EdpmThM0S/exec" method="POST">
+          
+          <div class="field-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="John Doe" required />
+          </div>
 
-      <label>
-        <input type="checkbox" name="consent" value="yes" required />
-        I agree to be contacted regarding my request.
-      </label>
+          <div class="inline-two">
+            <div class="field-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
 
-      <button class="btn" type="submit">Submit Request</button>
+            <div class="field-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="555-555-5555" required />
+            </div>
+          </div>
 
-    </form>
+          <div class="inline-two">
+            <div class="field-group">
+              <label for="state">State</label>
+              <select id="state" name="state" required>
+                <option disabled selected>Select your state</option>
+                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+                <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+                <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+                <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+                <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+                <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+                <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+                <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+                <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+                <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+                <option>South Dakota</option><option>Tennessee</option><option>Texas</option>
+                <option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option>
+                <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+              </select>
+            </div>
 
-    <div class="footer">
-      By submitting this form, you agree to our Terms, Privacy Policy, and disclosures.
+            <div class="field-group">
+              <label for="amount">Requested Amount</label>
+              <select id="amount" name="amount" required>
+                <option disabled selected>Choose amount</option>
+                <option>$100</option><option>$200</option><option>$300</option><option>$400</option>
+                <option>$500</option><option>$600</option><option>$700</option><option>$800</option>
+                <option>$900</option><option>$1,000</option><option>$1,500+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="inline-two">
+            <div class="field-group">
+              <label for="incomeFrequency">Income Frequency</label>
+              <select id="incomeFrequency" name="incomeFrequency" required>
+                <option disabled selected>Select one</option>
+                <option>Weekly</option><option>Bi-Weekly</option><option>Semi-Monthly</option><option>Monthly</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="bankAccount">Active Bank Account?</label>
+              <select id="bankAccount" name="bankAccount" required>
+                <option disabled selected>Select</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>Contact Permission</label>
+            <div class="consent-row">
+              <input type="checkbox" id="consent" name="consent" value="yes" required />
+              <label for="consent">I agree to be contacted regarding my request.</label>
+            </div>
+          </div>
+
+          <button class="submit-btn" type="submit">Submit Request</button>
+
+          <p class="fine-print">
+            By submitting this form, you agree to our Terms & Privacy Policy.
+          </p>
+        </form>
+      </div>
     </div>
   </div>
 </body>
